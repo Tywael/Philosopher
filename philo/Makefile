@@ -16,15 +16,13 @@ NAME	= philo
 ################################# Compilation ##################################
 CC			= gcc
 CFLAGS		= -Wall -Wextra -Werror -fsanitize=address
-HEADS		= -I$(INC) -I${LIBFTDIR}
+HEADS		= -I$(INC)
 LIBS		= -lpthread
 
 ##################################### SRC ######################################
 SRCDIR 		= ./src/
 INC			= ./inc/
-LIBFTDIR	= ./libft/
 BUILDDIR	= ./build/
-LIBFT		= $(addprefix $(LIBFTDIR), libft.a)
 SRCNAMES	= $(shell ls $(SRCDIR) | grep -E ".+\.c")
 SRCS		= $(addprefix $(SRCDIR), $(SRCNAMES))
 
@@ -44,17 +42,12 @@ $(BUILDDIR):
 $(BUILDDIR)%.o:$(SRCDIR)%.c
 			@$(CC) $(CFLAGS) $(HEADS) -o $@ -c $<
 
-$(LIBFT):
-			@$(MAKE) $(LIBFTDIR) bonus
-
 $(NAME): $(BUILDDIR) $(LIBFT) $(OBJS)
-			$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBFT) $(LIBS)
+			$(CC) $(CFLAGS) -o $@ $(OBJS)
 clean:
 			rm -rf $(BUILDDIR)
-			@$(MAKE) $(LIBFTDIR) clean
 
 fclean: clean
-			@$(MAKE) $(LIBFTDIR) fclean
 			rm -f $(NAME)
 
 re: fclean $(NAME)
