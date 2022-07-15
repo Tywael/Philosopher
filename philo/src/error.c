@@ -40,17 +40,20 @@ int	arg_born(t_data *data)
 {
 	if (data->time_die < 1 || data->time_sleep < 1
 		|| data->time_eat < 1 || data->nb_philo < 1)
-		return (2);
-	return (1);
+		return (1);
+	return (0);
 }
 
 int	init_arg(int argc, char **argv, t_data *data)
 {
+	int	ret;
+
 	if (argc != 5 && argc != 6)
 		return (1);
 	if (init_data(data, argc, argv))
 		return (1);
-	if (!arg_born(data))
-		return (2);
+	ret = arg_born(data);
+	if (ret)
+		return (ret);
 	return (0);
 }

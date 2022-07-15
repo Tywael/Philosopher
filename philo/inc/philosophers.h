@@ -71,6 +71,4 @@ void		death_checker(t_data *data, t_philo *philo, int i);
 void		exit_solver(t_data *data, t_philo *philo);
 int			process(t_data *data);
 
-
-
 #endif

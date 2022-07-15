@@ -60,10 +60,12 @@ int	init_data(t_data *data, int argc, char **argv)
 	data->time_die = ft_atoi(argv[2]);
 	data->time_eat = ft_atoi(argv[3]);
 	data->time_sleep = ft_atoi(argv[4]);
+	data->dead = 0;
+	data->end = 0;
 	data->philo = malloc((data->nb_philo + 1) * sizeof(t_philo));
 	if (!data->philo)
 		return (1);
-	data->forks = malloc((data->nb_philo * 2 + 1) * sizeof(pthread_mutex_t));
+	data->forks = malloc((data->nb_philo + 1) * sizeof(pthread_mutex_t));
 	if (!data->forks)
 		return (1);
 	if (argc == 6)
